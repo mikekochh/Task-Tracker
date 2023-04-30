@@ -36,3 +36,244 @@
     transform: rotate(360deg);
   }
 }
+
+#trashBin {
+  position: relative;
+}
+
+#trashBin img {
+  position: absoulte;
+  top: 0px;
+  right: 0px;
+  max-width: 10%;
+  max-height: 10%;
+  box-shadow: 0 0 8px white inset;
+} 
+
+#btnEdit {
+  visibility: hidden;
+}
+
+
+body {
+  margin: 0;
+  /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif; */
+  font-family: 'Andale Mono', monospace;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--primary-bg);
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+ul{
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+.dropdown-menu{
+  position: absolute;
+  top: 100px;
+  right: 20px;
+  background-color: #fff;
+  border-radius: var(--border-radius);
+  padding: 10px 20px;
+  width: 200px;
+}
+
+.dropdown-menu::before{
+  content: '';
+  position: absolute;
+  top: -5px;
+  right: 20px;
+  height: 20px;
+  width: 20px;
+  background: var(--secondary-bg);
+  transform: rotate(45deg);
+}
+
+h3{
+  width: 100%;
+  text-align: center;
+  font-size: 18px;
+  padding: 20px 0;
+  font-weight: 500;
+  font-size: 18px;
+  color: var(--primary-text-color);
+  line-height: 1.2rem;
+}
+
+h3 span{
+  font-size: 14px;
+  color: var(--secondary-text-color);
+  font-weight: 400;
+}
+
+.dropdown-menu ul li:hover button{
+  color: rgb(212, 33, 9);
+  cursor: pointer;
+}
+
+.dropdown-menu ul li{
+  padding: 10px 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.green-button {
+  background-color: #008000;
+  color: #000000;
+}
+
+.red-button {
+  background-color: #ff0000;
+  color: #000000;
+}
+
+.blue-button {
+  background-color: #0000ff;
+  color: #ffffff;
+}
+
+.gold-button {
+  background-color: #ffd700;
+  color: #000000;
+}
+
+.black-button {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+div.drag-indicator {
+  width: 100%;
+  height: 5px;
+  background-color: red;
+  margin: 5px 0px;
+  max-width: 500px;
+  display: inline-block;
+}
+
+.task-container {
+  /* background: rgb(63,94,251);
+  background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(9,7,143,1) 100%); */
+  color: white;
+  text-align: center;
+}
+
+
+/* These settings give it the fun, scrambled look */
+.display-task-container {
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  align-content: center;
+  line-height: 1.5;
+  border-radius: 15px;
+  padding: 20px;
+  margin: 10px;
+  display: inline-block;
+}
+
+.display-task-title {
+  max-width: 500px;
+  line-height: 1.5;
+  border-radius: 15px;
+  padding: 20px;
+  margin: 10px auto;
+}
+
+.display-task-label:hover {
+  cursor:grab;
+}
+
+.display-task-container:hover {
+  cursor: grab;
+}
+
+.display-task-container:active {
+  cursor: grabbing;
+  cursor: -moz-grabbing;
+  cursor: -webkit-grabbing;
+}
+
+.active {
+  background: #0F2027;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #2C5364, #203A43, #0F2027); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  color: white;
+}
+
+.completed {
+  background: radial-gradient(ellipse farthest-corner at right bottom, #FEDB37 0%, #FDB931 8%, #9f7928 30%, #8A6E2F 40%, transparent 80%),
+    radial-gradient(ellipse farthest-corner at left top, #FFFFFF 0%, #FFFFAC 8%, #D1B464 25%, #5d4a1f 62.5%, #5d4a1f 100%);
+  color: black;
+}
+
+.archived {
+  background: #870000;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #190A05, #870000);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #190A05, #870000); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  color: white;
+}
+
+/* old settings that give it a centered, straight look */
+/* .display-task-container-active {
+  background: rgb(65,65,65);
+  background: linear-gradient(90deg, rgba(65,65,65,1) 0%, rgba(99,99,99,0.6951155462184874) 50%, rgba(170,170,170,1) 100%); 
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  align-content: center;
+  line-height: 1.5;
+  border-radius: 15px;
+  padding: 20px;
+} */
+
+h2 {
+  font-size: 40px;
+  color: black;
+}
+
+.new-task-container {
+  border-radius: 15px;
+  padding: 20px 30px;
+  border: 2px solid greenyellow;
+  font-size: 25px;
+}
+
+.add-task-button {
+  border-radius: 15px;
+  padding: 20px 30px;
+  border: 2px solid greenyellow;
+  font-size: 25px;
+  background: #0F2027;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #2C5364, #203A43, #0F2027); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background-position: 100%;
+  background-size: 100% 100%;
+}
+
+.add-task-button:hover {
+  cursor: pointer;
+  background: rgb(218,218,0);
+  background: radial-gradient(circle, rgba(218,218,0,1) 0%, rgba(0,255,0,1) 100%);
+  transition: background-size .5s ease-in-out;
+  background-size: 100% 0%;
+}
+
+.task-container-border {
+  border-style: groove;
+  border-radius: 15px;
+  margin: 10px;
+  text-align: center;
+}
