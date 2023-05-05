@@ -1,5 +1,4 @@
 import React, { useRef } from 'react';
-import { Link } from 'react-router-dom';
 import * as c from '../../Constants';
 
 const List = (props) => {
@@ -8,16 +7,20 @@ const List = (props) => {
     let taskItemDragOver = useRef();
     let newTaskTypeID = useRef();
 
+    let taskTitleDrag = useRef();
+    let taskTitleDragOver = useRef();
+
+
     function dragStartTitle(taskTypeID) {
-
+        taskTitleDrag.current = taskTypeID;
     }
 
-    function dragEnterTitle(taskTypeID) {
-
-    }
-
-    function dragEndTitle(taskTypeID) {
-
+    function dragEndTitle() {
+        if (taskTitleDragOver.current > -1 && 
+            taskTitleDragOver.current !== null &&
+            taskTitleDrag.current !== taskTitleDragOver.current) {
+                moveAllTasksToNewTaskSection();
+        }
     }
 
     function dragStart(index) {
@@ -26,7 +29,11 @@ const List = (props) => {
 
     function dragEnter(index, taskTypeID) {
         newTaskTypeID.current = taskTypeID;
-        if (taskTypeID === 3) {
+        if (taskTitleDrag.current > -1 && taskTitleDrag.current !== null) {
+            taskTitleDragOver.current = taskTypeID
+            return;
+        }
+        else if (taskTypeID === 3) {
             return;
         }
 
@@ -44,6 +51,7 @@ const List = (props) => {
                 isDragging: false
             });
         });
+        //this line makes red lines appear, might need it down the road
         //newTaskList[index].isDragging = true;
         updateTaskList(newTaskList, taskTypeID);
     }
@@ -53,6 +61,20 @@ const List = (props) => {
         const newTaskList = [...originalTaskList];
         updateTaskList(newTaskList, startingTaskTypeID);
         //resetAllTasksIsDragging();
+    }
+
+    const moveAllTasksToNewTaskSection = () => {
+        const firstTaskList = taskTitleDrag.current === 0 ? [...props.activeTaskList]
+            : taskTitleDrag.current === 1 ? [...props.completedTaskList]
+            : [...props.archivedTaskList];
+        
+        const secondTaskList = taskTitleDragOver.current === 0 ? [...props.activeTaskList]
+            : taskTitleDragOver.current === 1 ? [...props.completedTaskList]
+            : [...props.archivedTaskList];
+
+        const newTaskList = secondTaskList.concat(firstTaskList);
+        updateTaskList(newTaskList, taskTitleDragOver.current);
+        updateTaskList([], taskTitleDrag.current);
     }
 
     function dragEnd(startingTaskTypeID) {
@@ -96,6 +118,7 @@ const List = (props) => {
         });
         updateTaskList(finalTaskList, newTaskTypeID.current);
         resetTaskBorders();
+        resetDragVariables();
         //resetAllTasksIsDragging();
     }
 
@@ -138,6 +161,15 @@ const List = (props) => {
         document.getElementById("taskSectionCompleted").classList.remove("completed-border");
         document.getElementById("taskSectionArchived").classList.remove("archived-border");
         document.getElementById("taskSectionDeleted").classList.remove("deleted-border");
+    }
+
+    const resetDragVariables = () => {
+        taskItemDrag.current = null;
+        taskItemDragOver.current = null;
+        newTaskTypeID.current = null;
+    
+        taskTitleDrag.current = null;
+        taskTitleDragOver.current = null;
     }
 
     const dragOverTaskSection = (e, taskTypeID) => {
@@ -183,8 +215,7 @@ const List = (props) => {
                         droppable={"true"} 
                         className='display-task-title active draggable'
                         onDragStart={e => dragStartTitle(c.taskTypeActive)}
-                        onDragEnter={e => dragEnterTitle(c.taskTypeActive)}
-                        onDragEnd={e => dragEndTitle(c.taskTypeActive)}
+                        onDragEnd={e => dragEndTitle()}
                     >
                         ACTIVE TASKS
                     </h2>
@@ -202,9 +233,6 @@ const List = (props) => {
                             >
                                 <textarea id={"txtAreaActiveTask" + index} value={task.taskName} style={{fontSize: "18pt", display: "none"}} />
                                 <label id={"lblActiveTask" + index} className="display-task-label">{task.taskName}</label>&nbsp;
-                                <Link to={'/edit/' + task.id}>
-                                    <button id="btnEdit" />
-                                </Link>&nbsp;
                                 <br></br>
                             </div>
                             {task.isDragging ? <div className="drag-indicator"></div> : null}
@@ -214,7 +242,14 @@ const List = (props) => {
                 <div className='task-container-border' id="taskSectionCompleted" 
                     onDragOver={e => dragOverTaskSection(e, c.taskTypeCompleted)} onDragEnter={e => dragEnter(0, c.taskTypeCompleted)}>
                     <br></br>
-                    <h2 draggable={"true"} droppable={"true"} className='completed display-task-title draggable'>COMPLETED TASKS</h2>
+                    <h2 draggable={"true"} 
+                        droppable={"true"} 
+                        className='completed display-task-title draggable'
+                        onDragStart={e => dragStartTitle(c.taskTypeCompleted)}
+                        onDragEnd={e => dragEndTitle()}
+                    >
+                        COMPLETED TASKS
+                    </h2>
                     {props.completedTaskList.map((task, index) => 
                         <React.Fragment>
                             <div key={task.id} 
@@ -228,9 +263,6 @@ const List = (props) => {
                             >
                                 <textarea id={"txtAreaCompletedTask" + index} value={task.taskName} style={{fontSize: "18pt", display: "none"}} />
                                 <label id={"lblCompletedTask" + index} className="display-task-label">{task.taskName}</label>&nbsp;
-                                <Link to={'/edit/' + task.id}>
-                                    <button id="btnEdit" />
-                                </Link>&nbsp;
                                 <br></br>
                             </div>
                             {task.isDragging ? <div className="drag-indicator"></div> : null}
@@ -240,7 +272,15 @@ const List = (props) => {
                 <div className='task-container-border' id="taskSectionArchived" 
                     onDragOver={e => dragOverTaskSection(e, c.taskTypeArchived)} onDragEnter={e => dragEnter(0, c.taskTypeArchived)}>
                     <br></br>
-                    <h2 draggable={"true"} droppable={"true"} className='draggable archived display-task-title'>ARCHIVED TASKS</h2>
+                    <h2 
+                        draggable={"true"} 
+                        droppable={"true"} 
+                        className='draggable archived display-task-title'
+                        onDragStart={e => dragStartTitle(c.taskTypeArchived)}
+                        onDragEnd={e => dragEndTitle(c)}
+                    >
+                        ARCHIVED TASKS
+                    </h2>
                     {props.archivedTaskList.map((task, index) => 
                         <React.Fragment>
                             <div key={task.id} 
@@ -254,9 +294,6 @@ const List = (props) => {
                             >
                                 <textarea id={"txtAreaArchivedTask" + index} value={task.taskName} style={{fontSize: "18pt", display: "none"}} />
                                 <label id={"lblArchivedTask" + index} className="display-task-label">{task.taskName}</label>&nbsp;
-                                <Link to={'/edit/' + task.id}>
-                                    <button id="btnEdit" />
-                                </Link>&nbsp;
                                 <br></br>
                             </div>
                             {task.isDragging ? <div className="drag-indicator"></div> : null}
