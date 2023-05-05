@@ -41,14 +41,14 @@
   position: relative;
 }
 
-#trashBin img {
+#taskSectionDeleted img {
   position: absoulte;
   top: 0px;
   right: 0px;
   max-width: 10%;
   max-height: 10%;
   box-shadow: 0 0 8px white inset;
-} 
+}
 
 #btnEdit {
   visibility: hidden;
@@ -191,18 +191,16 @@ div.drag-indicator {
   margin: 10px auto;
 }
 
+.display-task-label {
+  font-size: 18pt;
+}
+
 .display-task-label:hover {
   cursor:grab;
 }
 
-.display-task-container:hover {
+.draggable:hover {
   cursor: grab;
-}
-
-.display-task-container:active {
-  cursor: grabbing;
-  cursor: -moz-grabbing;
-  cursor: -webkit-grabbing;
 }
 
 .active {
@@ -224,20 +222,6 @@ div.drag-indicator {
   background: linear-gradient(to right, #190A05, #870000); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   color: white;
 }
-
-/* old settings that give it a centered, straight look */
-/* .display-task-container-active {
-  background: rgb(65,65,65);
-  background: linear-gradient(90deg, rgba(65,65,65,1) 0%, rgba(99,99,99,0.6951155462184874) 50%, rgba(170,170,170,1) 100%); 
-  max-width: 500px;
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
-  align-content: center;
-  line-height: 1.5;
-  border-radius: 15px;
-  padding: 20px;
-} */
 
 h2 {
   font-size: 40px;
@@ -277,3 +261,24 @@ h2 {
   margin: 10px;
   text-align: center;
 }
+
+.active-border {
+  border-color: green;
+  border-width: 10px;
+}
+
+.completed-border {
+  border-color: gold;
+  border-width: 10px;
+}
+
+.archived-border {
+  border-color: black;
+  border-width: 10px;
+}
+
+.deleted-border {
+  border-color: red;
+  border-width: 10px;
+}
+
