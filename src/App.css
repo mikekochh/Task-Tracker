@@ -50,10 +50,6 @@
   box-shadow: 0 0 8px white inset;
 }
 
-#btnEdit {
-  visibility: hidden;
-}
-
 
 body {
   margin: 0;
@@ -79,27 +75,6 @@ a {
   text-decoration: none;
 }
 
-.dropdown-menu{
-  position: absolute;
-  top: 100px;
-  right: 20px;
-  background-color: #fff;
-  border-radius: var(--border-radius);
-  padding: 10px 20px;
-  width: 200px;
-}
-
-.dropdown-menu::before{
-  content: '';
-  position: absolute;
-  top: -5px;
-  right: 20px;
-  height: 20px;
-  width: 20px;
-  background: var(--secondary-bg);
-  transform: rotate(45deg);
-}
-
 h3{
   width: 100%;
   text-align: center;
@@ -117,41 +92,6 @@ h3 span{
   font-weight: 400;
 }
 
-.dropdown-menu ul li:hover button{
-  color: rgb(212, 33, 9);
-  cursor: pointer;
-}
-
-.dropdown-menu ul li{
-  padding: 10px 0;
-  border-top: 1px solid rgba(0, 0, 0, 0.05);
-}
-
-.green-button {
-  background-color: #008000;
-  color: #000000;
-}
-
-.red-button {
-  background-color: #ff0000;
-  color: #000000;
-}
-
-.blue-button {
-  background-color: #0000ff;
-  color: #ffffff;
-}
-
-.gold-button {
-  background-color: #ffd700;
-  color: #000000;
-}
-
-.black-button {
-  background-color: #000000;
-  color: #ffffff;
-}
-
 div.drag-indicator {
   width: 100%;
   height: 5px;
@@ -161,15 +101,20 @@ div.drag-indicator {
   display: inline-block;
 }
 
-.task-container {
-  /* background: rgb(63,94,251);
-  background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(9,7,143,1) 100%); */
-  color: white;
+.tasks-container {
+  display:flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 2px 4px;
+  padding: 5px 8px;
+  line-height: 2rem;
+  /* max-width: 500px; */
   text-align: center;
+  justify-content: center;
 }
 
 
-/* These settings give it the fun, scrambled look */
+/* These settings give it the fun, scrambled look */ 
 .display-task-container {
   max-width: 500px;
   margin-left: auto;
@@ -180,7 +125,8 @@ div.drag-indicator {
   border-radius: 15px;
   padding: 20px;
   margin: 10px;
-  display: inline-block;
+  display: flex;
+  flex-direction: row;
 }
 
 .display-task-title {

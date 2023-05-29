@@ -4,7 +4,7 @@ import TextBox from './TextBox';
 import List from './List';
 import React, {useEffect, useState} from 'react';
 import {v4} from 'uuid';
-import * as c from '../../Constants';
+import * as c from '../../Main';
 
 function Home() {
 

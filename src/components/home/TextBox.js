@@ -9,6 +9,10 @@ const TextBox = (props) => {
             return;
         }
         props.addTask(newTaskName);
+        clearTaskInput();
+    }
+
+    const clearTaskInput = () => {
         document.getElementById("taskNameInput").value = "";
     }
 
@@ -29,10 +33,9 @@ const TextBox = (props) => {
             <button 
                 className="add-task-button" 
                 id="btnAdd" 
-                onClick={() => { add() }} >+</button>&nbsp;
+                onClick={() => { add() }} >+</button>
+                <button onClick={() => clearTaskInput()} >CLEAR</button>&nbsp;
                 <br></br>
-            {/* <button className="red-button" onClick={props.moveAllToArchived}>All Archived</button>&nbsp;
-            <button className="gold-button" onClick={props.moveAllToCompleted}>All Completed</button> */}
         </div>
     );
 };
