@@ -1,1 +1,1 @@
-Task Tracker application. 
+Application that keeps track of tasks at in different stages. Tasks are created and are moved into the active task section. When tasks are completed, users can move tasks into the completed section. When tasks are no longer needed, they can be moved into the archived section, or they can be moved straight to the trash section to be deleted. Users can drag the title of the task section (for example, drag the Active Tasks bubble), and can move all of the tasks in that section to another by dropping the Task Title in another section. 
