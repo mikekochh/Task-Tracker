@@ -33,8 +33,15 @@ const TextBox = (props) => {
             <button 
                 className="add-task-button" 
                 id="btnAdd" 
-                onClick={() => { add() }} >+</button>
-                <button onClick={() => clearTaskInput()} >CLEAR</button>&nbsp;
+                onClick={() => { add() }} >
+                +
+            </button>
+            <button 
+                onClick={() => clearTaskInput()} 
+                className="add-task-button"
+            >
+                CLEAR
+            </button>&nbsp;
                 <br></br>
         </div>
     );

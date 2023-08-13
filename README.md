@@ -1,1 +1,1 @@
-Task Tracker application for tracking tasks
+Task Tracker application. 

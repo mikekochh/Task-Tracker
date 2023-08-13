@@ -2,8 +2,8 @@ import '../../App.css';
 import Header from '../Header';
 import TextBox from './TextBox';
 import List from './List';
-import React, {useEffect, useState} from 'react';
-import {v4} from 'uuid';
+import React, { useEffect, useState } from 'react';
+import { v4 } from 'uuid';
 import * as c from '../../Main';
 
 function Home() {
@@ -18,7 +18,7 @@ function Home() {
 
   const [archivedTaskList, updateArchivedTaskList] = useState(() => {
     return JSON.parse(localStorage.getItem(c.LOCAL_STORAGE_KEY_ARCHIVED)) || []
-  });   
+  });
 
   useEffect(() => {
     localStorage.setItem(c.LOCAL_STORAGE_KEY_ACTIVE, JSON.stringify(activeTaskList));
@@ -72,12 +72,13 @@ function Home() {
   return (
     <div>
       <Header />
-      <br></br>
-      
-      <TextBox addTask={addTask} 
+      <TextBox addTask={addTask}
         moveAllToArchived={moveAllToArchived}
         moveAllToCompleted={moveAllToCompleted}
       />
+      <br></br>
+      <br></br>
+      <br></br>
       <List activeTaskList={activeTaskList}
         completedTaskList={completedTaskList}
         archivedTaskList={archivedTaskList}
@@ -89,7 +90,7 @@ function Home() {
       <br></br>
       <br></br>
     </div>
-    
+
   );
 }
 

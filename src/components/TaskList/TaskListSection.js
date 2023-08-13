@@ -42,27 +42,27 @@ const TaskListSection = (props) => {
     return (
         <div>
             <div className="task-container-border"
-                            id={taskSectionDivID.current} 
-                            onDragOver={e => functions.dragOverTaskSection(e, taskTypeID.current)}
-                            onDragEnter={e => functions.dragEnter(0, taskTypeID.current)}
-                            onDragLeave={e => functions.exitTaskSections()}
+                id={taskSectionDivID.current}
+                onDragOver={e => functions.dragOverTaskSection(e, taskTypeID.current)}
+                onDragEnter={e => functions.dragEnter(0, taskTypeID.current)}
+                onDragLeave={e => functions.exitTaskSections()}
             >
                 <br></br>
                 <h2 draggable={"true"}
-                            droppable={"true"}
-                            className={setHeaderClassList()}
-                            onDragStart={e => functions.dragStartTitle(taskTypeID.current)}
-                            onDragEnd={e => functions.dragEndTitle()}
+                    droppable={"true"}
+                    className={setHeaderClassList()}
+                    onDragStart={e => functions.dragStartTitle(taskTypeID.current)}
+                    onDragEnd={e => functions.dragEndTitle()}
                 >
                     {taskTitle.current}
                 </h2>
                 <br></br>
                 <div className="tasks-container">
-                    {props.taskList.length > 0 && props.taskList.map((task, index) => 
+                    {props.taskList.length > 0 && props.taskList.map((task, index) =>
                         <TaskListItem task={task}
-                                    index={index}
-                                    taskTypeID={taskTypeID.current}
-                                    taskListItemFunctions={props.taskListItemFunctions}
+                            index={index}
+                            taskTypeID={taskTypeID.current}
+                            taskListItemFunctions={props.taskListItemFunctions}
                         />
                     )}
                 </div>

@@ -32,6 +32,7 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
@@ -53,9 +54,6 @@
 
 body {
   margin: 0;
-  /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif; */
   font-family: 'Andale Mono', monospace;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -67,7 +65,7 @@ code {
     monospace;
 }
 
-ul{
+ul {
   list-style: none;
 }
 
@@ -75,7 +73,7 @@ a {
   text-decoration: none;
 }
 
-h3{
+h3 {
   width: 100%;
   text-align: center;
   font-size: 18px;
@@ -86,7 +84,7 @@ h3{
   line-height: 1.2rem;
 }
 
-h3 span{
+h3 span {
   font-size: 14px;
   color: var(--secondary-text-color);
   font-weight: 400;
@@ -102,19 +100,16 @@ div.drag-indicator {
 }
 
 .tasks-container {
-  display:flex;
+  display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   margin: 2px 4px;
   padding: 5px 8px;
   line-height: 2rem;
-  /* max-width: 500px; */
   text-align: center;
   justify-content: center;
 }
 
-
-/* These settings give it the fun, scrambled look */ 
 .display-task-container {
   max-width: 500px;
   margin-left: auto;
@@ -142,7 +137,7 @@ div.drag-indicator {
 }
 
 .display-task-label:hover {
-  cursor:grab;
+  cursor: grab;
 }
 
 .draggable:hover {
@@ -150,9 +145,9 @@ div.drag-indicator {
 }
 
 .active {
-  background: #0F2027;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #2C5364, #203A43, #0F2027); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: #0F2027;
+  background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);
+  background: linear-gradient(to right, #2C5364, #203A43, #0F2027);
   color: white;
 }
 
@@ -163,9 +158,9 @@ div.drag-indicator {
 }
 
 .archived {
-  background: #870000;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #190A05, #870000);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #190A05, #870000); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: #870000;
+  background: -webkit-linear-gradient(to right, #190A05, #870000);
+  background: linear-gradient(to right, #190A05, #870000);
   color: white;
 }
 
@@ -186,19 +181,15 @@ h2 {
   padding: 20px 30px;
   border: 2px solid greenyellow;
   font-size: 25px;
-  background: #0F2027;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #2C5364, #203A43, #0F2027); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: #0F2027;
   background-position: 100%;
   background-size: 100% 100%;
 }
 
 .add-task-button:hover {
   cursor: pointer;
-  background: rgb(218,218,0);
-  background: radial-gradient(circle, rgba(218,218,0,1) 0%, rgba(0,255,0,1) 100%);
-  transition: background-size .5s ease-in-out;
-  background-size: 100% 0%;
+  background: rgb(218, 218, 0);
+  background: radial-gradient(circle, rgba(218, 218, 0, 1) 0%, rgba(0, 255, 0, 1) 100%);
 }
 
 .task-container-border {
@@ -227,4 +218,3 @@ h2 {
   border-color: red;
   border-width: 10px;
 }
-

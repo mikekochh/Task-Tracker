@@ -20,30 +20,26 @@ const List = (props) => {
 
 
     function dragStartTitle(taskTypeID) {
-        console.log("dragStartTitle running...");
         taskTitleDrag.current = taskTypeID;
     }
 
     function dragEndTitle() {
-        console.log("dragEndTitle running...");
         if (taskOutsideBorders.current) {
             return;
         }
-        if (taskTitleDragOver.current > -1 && 
+        if (taskTitleDragOver.current > -1 &&
             taskTitleDragOver.current !== null &&
             taskTitleDrag.current !== taskTitleDragOver.current) {
-                moveAllTasksToNewTaskSection();
+            moveAllTasksToNewTaskSection();
         }
         resetTaskBorders();
     }
 
     function dragStart(index) {
-        console.log("dragStart running...");
         taskItemDrag.current = index;
     }
 
     function dragEnter(index, taskTypeID) {
-        console.log("dragEnter running...");
         newTaskTypeID.current = taskTypeID;
         if (taskTitleDrag.current > -1 && taskTitleDrag.current !== null) {
             taskTitleDragOver.current = taskTypeID;
@@ -57,7 +53,7 @@ const List = (props) => {
 
         const firstTaskList = taskTypeID === 0 ? [...props.activeTaskList] :
             taskTypeID === 1 ? [...props.completedTaskList] :
-            [...props.archivedTaskList];
+                [...props.archivedTaskList];
 
         let newTaskList = [];
         firstTaskList.forEach(task => {
@@ -67,9 +63,6 @@ const List = (props) => {
                 isDragging: false
             });
         });
-        //this line makes red lines appear, might need it down the road
-        //newTaskList[index].isDragging = true;
-        //updateTaskList(newTaskList, taskTypeID);
     }
 
     function deleteTask(originalTaskList, startingTaskTypeID) {
@@ -81,11 +74,11 @@ const List = (props) => {
     const moveAllTasksToNewTaskSection = () => {
         const firstTaskList = taskTitleDrag.current === 0 ? [...props.activeTaskList]
             : taskTitleDrag.current === 1 ? [...props.completedTaskList]
-            : [...props.archivedTaskList];
-        
+                : [...props.archivedTaskList];
+
         const secondTaskList = taskTitleDragOver.current === 0 ? [...props.activeTaskList]
             : taskTitleDragOver.current === 1 ? [...props.completedTaskList]
-            : [...props.archivedTaskList];
+                : [...props.archivedTaskList];
 
         const newTaskList = secondTaskList.concat(firstTaskList);
         updateTaskList(newTaskList, taskTitleDragOver.current);
@@ -95,8 +88,8 @@ const List = (props) => {
     const updateTaskName = (newTaskName, taskIndex, taskTypeID) => {
         const taskList = taskTypeID === 0 ? [...props.activeTaskList]
             : taskTypeID === 1 ? [...props.completedTaskList]
-            : [...props.archivedTaskList];
-        
+                : [...props.archivedTaskList];
+
         taskList.forEach((task, index) => {
             if (index === taskIndex) {
                 taskList[index].taskName = newTaskName;
@@ -106,17 +99,16 @@ const List = (props) => {
     }
 
     function dragEnd(startingTaskTypeID) {
-        console.log("dragEnd running...");
         if (taskOutsideBorders.current) {
             return;
         }
         const originalTaskList = startingTaskTypeID === 0 ? [...props.activeTaskList]
             : startingTaskTypeID === 1 ? [...props.completedTaskList]
-            : [...props.archivedTaskList];
+                : [...props.archivedTaskList];
 
         const currentTaskItemMain = startingTaskTypeID === 0 ? props.activeTaskList[taskItemDrag.current]
             : startingTaskTypeID === 1 ? props.completedTaskList[taskItemDrag.current]
-            : props.archivedTaskList[taskItemDrag.current];
+                : props.archivedTaskList[taskItemDrag.current];
 
 
         if (newTaskTypeID.current === 3) {
@@ -127,7 +119,7 @@ const List = (props) => {
 
         const newTaskList = newTaskTypeID.current === 0 ? [...props.activeTaskList]
             : newTaskTypeID.current === 1 ? [...props.completedTaskList]
-            : [...props.archivedTaskList];
+                : [...props.archivedTaskList];
 
         if (startingTaskTypeID === newTaskTypeID.current) {
             newTaskList.splice(taskItemDrag.current, 1);
@@ -135,13 +127,13 @@ const List = (props) => {
         }
         else {
             originalTaskList.splice(taskItemDrag.current, 1);
-            newTaskList.splice(taskItemDragOver.current+1, 0, currentTaskItemMain);
+            newTaskList.splice(taskItemDragOver.current + 1, 0, currentTaskItemMain);
             updateTaskList(originalTaskList, startingTaskTypeID);
         }
 
         currentTaskItemMain.isDragging = false;
         let finalTaskList = [];
-        newTaskList.forEach(task=> {
+        newTaskList.forEach(task => {
             finalTaskList.push({
                 taskName: task.taskName,
                 id: task.id,
@@ -155,8 +147,7 @@ const List = (props) => {
 
 
     const updateTaskList = (taskList, taskTypeID) => {
-        console.log("updateTaskList running...");
-        switch(taskTypeID) {
+        switch (taskTypeID) {
             case 0:
                 props.updateActiveTaskList(taskList);
                 break;
@@ -177,7 +168,7 @@ const List = (props) => {
         taskItemDrag.current = null;
         taskItemDragOver.current = null;
         newTaskTypeID.current = null;
-    
+
         taskTitleDrag.current = null;
         taskTitleDragOver.current = null;
     }
@@ -200,9 +191,7 @@ const List = (props) => {
             document.getElementById("txtAreaActiveTask" + index).style.display = "flex";
             document.getElementById("lblActiveTask" + index).style.display = "none";
             document.getElementById("titleActiveTask" + index).style.display = "flex";
-            console.log(document.getElementById("divActiveTask" + index).draggable);
             document.getElementById("divActiveTask" + index).draggable = false;
-            console.log(document.getElementById("divActiveTask" + index).draggable);
         }
         else if (taskTypeID === 1) {
             document.getElementById("txtAreaCompletedTask" + index).style.display = "flex";
@@ -224,7 +213,6 @@ const List = (props) => {
     }
 
     const doneEditingTaskName = (index, taskTypeID) => {
-        console.log("doneEditingTaskName running...");
         if (taskTypeID === 0) {
             document.getElementById("txtAreaActiveTask" + index).style.display = "none";
             document.getElementById("lblActiveTask" + index).style.display = "flex";
@@ -300,23 +288,22 @@ const List = (props) => {
 
     return (
         <div className="task-container">
-                {/* Turn this into a for loop for all four sections, eventually for loop for all sections added by user */}
-                <TaskListSection taskTypeID={c.taskTypeActive}
-                                        taskListSectionFunctions={taskListSectionFunctions}
-                                        taskListItemFunctions={taskListItemFunctions}
-                                        taskList={props.activeTaskList}
-                />
-                <TaskListSection taskTypeID={c.taskTypeCompleted}
-                                        taskListSectionFunctions={taskListSectionFunctions}
-                                        taskListItemFunctions={taskListItemFunctions}
-                                        taskList={props.completedTaskList}
-                />
-                <TaskListSection taskTypeID={c.taskTypeArchived}
-                                    taskListSectionFunctions={taskListSectionFunctions}
-                                    taskListItemFunctions={taskListItemFunctions}
-                                    taskList={props.archivedTaskList}
-                />
-                <TrashSection trashSectionFunctions={trashSectionFunctions} />
+            <TaskListSection taskTypeID={c.taskTypeActive}
+                taskListSectionFunctions={taskListSectionFunctions}
+                taskListItemFunctions={taskListItemFunctions}
+                taskList={props.activeTaskList}
+            />
+            <TaskListSection taskTypeID={c.taskTypeCompleted}
+                taskListSectionFunctions={taskListSectionFunctions}
+                taskListItemFunctions={taskListItemFunctions}
+                taskList={props.completedTaskList}
+            />
+            <TaskListSection taskTypeID={c.taskTypeArchived}
+                taskListSectionFunctions={taskListSectionFunctions}
+                taskListItemFunctions={taskListItemFunctions}
+                taskList={props.archivedTaskList}
+            />
+            <TrashSection trashSectionFunctions={trashSectionFunctions} />
         </div>
     );
 };
